@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
@@ -35,9 +35,22 @@ service-specific runbooks.
 | [`mlai-au`](https://github.com/MLAI-AUS-Inc/mlai-au) | Public website and browser applications | React Router on Cloudflare Workers |
 | [`mlai-backend`](https://github.com/MLAI-AUS-Inc/mlai-backend) | Django APIs, identity, persistent data, integrations, jobs, and workers | Python/Django containers |
 | [`roo`](https://github.com/MLAI-AUS-Inc/roo) | Slack-facing public and administrative AI agent services | Python/FastAPI containers |
-| [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat) | MLAI community workspace, relay, desktop/mobile clients, CLI, and agents | Rust, TypeScript/Tauri, Flutter, containers |
-| [`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane) | MLAI's fork of the Plane application | Django/React monorepo and containers |
-| [`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge) | Security boundary and routing gateway for `admin.mlai.au` | Cloudflare Worker |
+
+## Inactive open-source deployment experiments
+
+These repositories are retained as experiment history. They are not active,
+supported MLAI platform components and should not be cloned during normal
+onboarding or represented as current production architecture.
+
+| Repository | Experiment |
+| --- | --- |
+| [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat) | Deploying and adapting the open-source Buzz collaboration platform |
+| [`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane) | Deploying and adapting the open-source Plane project-management platform |
+| [`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge) | Edge-routing prototype created for the Plane deployment experiment |
+
+Work in an experimental repository only when a task explicitly reactivates or
+investigates that experiment. Its README may describe intended deployment
+behavior that was never adopted as current MLAI architecture.
 
 See [`machine/repositories.yaml`](machine/repositories.yaml) for a compact,
 machine-readable version of this inventory.

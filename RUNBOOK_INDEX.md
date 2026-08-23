@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
@@ -21,7 +21,7 @@ routes maintainers to those documents without copying procedures.
 
 - Repository: [`mlai-backend`](https://github.com/MLAI-AUS-Inc/mlai-backend)
 - Documentation index: `docs/README.md`
-- MLAI Chat integration: `docs/mlai-chat-*.md`
+- Historical Buzz/MLAI Chat experiment integration: `docs/mlai-chat-*.md`
 - Organisational memory: `docs/org-memory-*.md`
 - Reconciliation: `docs/*reconciliation*.md`
 
@@ -32,7 +32,13 @@ routes maintainers to those documents without copying procedures.
 - Service operations and incident notes: `roo-standalone/docs/`
 - Runtime profiles: `roo-standalone/docker-compose*.yml`
 
-## MLAI Chat
+## Inactive experiment references
+
+The following documents are retained for investigation and historical context.
+They are not current production runbooks and do not establish supported
+services or operational readiness.
+
+### Buzz / MLAI Chat experiment
 
 - Repository: [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat)
 - Architecture: `ARCHITECTURE.md`
@@ -40,13 +46,13 @@ routes maintainers to those documents without copying procedures.
 - Hosted deployment: `deploy/mlai/README.md`
 - Testing: `TESTING.md`
 
-## MLAI Plane
+### Plane experiment
 
 - Repository: [`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane)
 - MLAI fork boundary: `MLAI.md`
 - Upstream development instructions: `CONTRIBUTING.md`
 
-## Plane edge gateway
+### Plane edge experiment
 
 - Repository: [`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge)
 - Security and local development: `README.md`

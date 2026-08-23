@@ -1,22 +1,18 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
 # System map
 
-## Product surfaces
+## Active product surfaces
 
 ```text
 People and browsers
   |
   +-- mlai.au ----------------> mlai-au ---------> mlai-backend
-  |
-  +-- chat.mlai.au -----------> mlai-chat ------> mlai-backend integration APIs
-  |
-  +-- admin.mlai.au ----------> mlai-plane-edge -> private mlai-plane origin
   |
   +-- Slack ------------------> roo -------------> mlai-backend and approved integrations
 ```
@@ -24,7 +20,7 @@ People and browsers
 The arrows show primary request relationships, not unrestricted trust. Each
 service authenticates callers according to its own contract.
 
-## Ownership matrix
+## Active ownership matrix
 
 | Capability | Owner | Important collaborators |
 | --- | --- | --- |
@@ -32,19 +28,16 @@ service authenticates callers according to its own contract.
 | Browser authentication flows | `mlai-au` UI, `mlai-backend` contract/data | — |
 | Founder Tools | `mlai-au` UI, `mlai-backend` API/data | External connectors |
 | Hackathon browser apps | `mlai-au` | `mlai-backend` APIs, Roo for selected agent experiences |
-| Shared users and organisations | `mlai-backend` | All authenticated product surfaces |
+| Shared users and organisations | `mlai-backend` | Authenticated product surfaces |
 | Scheduled backend jobs | `mlai-backend` | Roo may call approved trigger APIs |
 | Slack agent behavior | `roo` | `mlai-backend`, Linear, model providers |
-| Community chat relay and clients | `mlai-chat` | `mlai-backend` identity/membership/bridge APIs |
-| Plane application | `mlai-plane` | `mlai-plane-edge` |
-| `admin.mlai.au` routing and cookie isolation | `mlai-plane-edge` | `mlai-plane`, Cloudflare |
 
-## Repository boundaries
+## Active repository boundaries
 
 ### `mlai-au`
 
 Owns browser presentation and Cloudflare Worker behavior for `mlai.au`. It does
-not own persistent backend data, scheduled work, chat, or Plane.
+not own persistent backend data or scheduled work.
 
 ### `mlai-backend`
 
@@ -57,23 +50,23 @@ Owns Slack-facing AI routing and approved actions. Public and administrative
 surfaces are separate security principals. Roo does not become the source of
 truth for data owned by `mlai-backend` or Linear.
 
-### `mlai-chat`
+## Inactive open-source deployment experiments
 
-Owns the chat protocol, relay, clients, CLI, workflows, and agent harness. It is
-an MLAI distribution fork of Buzz and retains upstream internal names.
+These repositories are retained for experiment history and possible future
+evaluation. They are not supported product surfaces or current architecture:
 
-### `mlai-plane`
+- `mlai-chat`: experiment deploying and adapting the open-source Buzz
+  collaboration platform;
+- `mlai-plane`: experiment deploying and adapting the open-source Plane
+  project-management platform; and
+- `mlai-plane-edge`: Cloudflare edge-routing prototype created for the Plane
+  experiment.
 
-Owns MLAI's Plane application fork. Product changes may be candidates for
-upstream contribution, but MLAI deployment changes remain explicitly scoped.
+Documentation inside these repositories describes their intended experimental
+design. It must not be used as evidence that `chat.mlai.au`, `admin.mlai.au`, or
+their associated services are active.
 
-### `mlai-plane-edge`
-
-Owns the public edge boundary at `admin.mlai.au`. It strips MLAI parent-domain
-credentials before requests reach Plane and keeps Plane origin credentials out
-of the browser.
-
-## When more than one repository changes
+## When more than one active repository changes
 
 A cross-repository change should name:
 

@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
@@ -17,10 +17,7 @@ MLAI/
 ├── mlai-engineering/
 ├── mlai-au/
 ├── mlai-backend/
-├── roo/
-├── mlai-chat/
-├── mlai-plane/
-└── mlai-plane-edge/
+└── roo/
 ```
 
 Clone only the repositories needed for the task. Some backend content workflows
@@ -33,9 +30,6 @@ also expect a separately authorized sibling `content-factory` repository.
 | `mlai-au` | repository root | `bun install --frozen-lockfile` | `bun run typecheck` |
 | `mlai-backend` | repository root | Python 3.11 venv; install both requirements files | `python manage.py check` with a local SQLite URL |
 | `roo` | `roo-standalone` | Python 3.11 venv; install `requirements.txt` | targeted import/static inspection; see repo README |
-| `mlai-chat` | repository root | activate Hermit | narrow format/lint commands from `CONTRIBUTING.md` |
-| `mlai-plane` | repository root | follow `CONTRIBUTING.md` after approval | `pnpm check` where dependencies already exist |
-| `mlai-plane-edge` | repository root | `bun install --frozen-lockfile` | `bun run check` |
 
 Always prefer the current repository README and package scripts over this
 summary.
@@ -52,8 +46,17 @@ command:
 4. Present the exact migration set and target database to the user.
 5. Run it only after receiving explicit approval.
 
-Known examples that cross this gate include `mlai-backend`'s full local web
-container, `mlai-chat`'s `just setup`, and Plane setup/container startup.
+The active known example that crosses this gate is `mlai-backend`'s full local
+web container. The inactive Buzz and Plane experiments also contain setup paths
+that apply migrations; do not run them unless an explicit task reactivates the
+experiment and approves the exact migration set.
+
+## Inactive experiments
+
+`mlai-chat`, `mlai-plane`, and `mlai-plane-edge` are not part of the standard
+workspace or onboarding path. Clone or run them only for an explicitly scoped
+historical investigation or reactivation decision. Repository-local commands
+describe the experiment, not a supported MLAI development environment.
 
 ## Secrets
 

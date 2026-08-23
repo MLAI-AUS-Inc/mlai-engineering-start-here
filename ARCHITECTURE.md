@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
@@ -9,10 +9,9 @@ review_interval_days: 90
 
 ## Context
 
-MLAI uses several independently deployable applications rather than one
-monolith. The public website, Django backend, Slack agent, community workspace,
-Plane application, and Plane edge gateway each have separate runtime and trust
-boundaries.
+The supported MLAI platform currently consists of the public website and
+browser applications, the shared Django backend, and Roo's Slack-facing agent
+services. Each is independently deployable and has a distinct trust boundary.
 
 ```mermaid
 flowchart LR
@@ -21,23 +20,14 @@ flowchart LR
     AU[mlai-au\nCloudflare Worker]
     API[mlai-backend\nDjango API + workers]
     Roo[roo\nFastAPI agents]
-    Chat[mlai-chat\nrelay + clients]
-    Edge[mlai-plane-edge\nCloudflare Worker]
-    Plane[mlai-plane\nprivate Plane origin]
     Data[(PostgreSQL / Redis / object storage)]
     Providers[Approved external providers]
 
     Browser --> AU
-    Browser --> Chat
-    Browser --> Edge
     Slack --> Roo
     AU --> API
-    Chat --> API
     Roo --> API
-    Edge --> Plane
     API --> Data
-    Chat --> Data
-    Plane --> Data
     API --> Providers
     Roo --> Providers
 ```
@@ -55,13 +45,6 @@ server-rendered routes are handled by the Cloudflare Worker. Data-backed
 features call explicit `mlai-backend` APIs. The browser must send credentials
 only to approved origins.
 
-### Community chat
-
-MLAI Chat clients connect to the `mlai-chat` relay. The relay owns chat event
-storage and protocol behavior. `mlai-backend` supplies selected MLAI account,
-membership, email-code, and bridge integration contracts; it is not the chat
-event store.
-
 ### Slack and agents
 
 Slack events reach Roo's FastAPI surface. Roo validates Slack requests, routes
@@ -69,25 +52,16 @@ intent, calls approved model or service providers, and performs only actions
 allowed for its configured surface. Public Roo and Admin Roo must use distinct
 credentials and authority.
 
-### Plane administration
-
-The browser reaches `admin.mlai.au` through `mlai-plane-edge`. The edge Worker
-removes MLAI parent-domain authentication cookies, supplies private-origin
-credentials, and proxies to `mlai-plane`. Plane authentication remains
-separate from the MLAI website session.
-
 ## Trust boundaries
 
 1. **Browser to public edge:** only explicitly configured origins receive
    browser credentials.
-2. **`admin.mlai.au` to Plane:** MLAI parent-domain cookies are denied; Plane
-   cookies remain host-local.
-3. **Service to service:** each integration uses a dedicated credential and
+2. **Service to service:** each integration uses a dedicated credential and
    narrow contract rather than reusing browser credentials.
-4. **External webhooks:** callers must be authenticated and replay-bounded.
-5. **Public versus administrative agents:** authority and secrets remain
+3. **External webhooks:** callers must be authenticated and replay-bounded.
+4. **Public versus administrative agents:** authority and secrets remain
    separate even when behavior shares code.
-6. **Data stores:** ownership is service-specific; direct cross-service database
+5. **Data stores:** ownership is service-specific; direct cross-service database
    access is not implied.
 
 ## Data ownership
@@ -95,13 +69,23 @@ separate from the MLAI website session.
 | Data | Authoritative service |
 | --- | --- |
 | MLAI users, organisations, founder tools, integrations | `mlai-backend` |
-| Chat events, channels, chat audit state | `mlai-chat` |
-| Plane work items and Plane configuration | `mlai-plane` |
 | Roo local receipts and agent-specific runtime state | `roo` |
 | Website build content and browser-local prototype state | `mlai-au` |
 
 When a feature needs data owned by another service, prefer an authenticated API
 or event contract over direct database access.
+
+## Inactive experiment architectures
+
+`mlai-chat`, `mlai-plane`, and `mlai-plane-edge` explored deployment of the
+open-source Buzz and Plane products. They are retained as inactive experiments,
+not shown in the supported architecture diagram, and must not be treated as
+current production request paths or data authorities.
+
+Their repository-local architecture and runbook files describe intended
+experimental behavior. Any reactivation requires an explicit architecture,
+security, operations, and ownership review before those documents can be
+promoted to current platform guidance.
 
 ## Architecture changes
 
