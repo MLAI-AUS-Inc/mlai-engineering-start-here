@@ -1,0 +1,66 @@
+schema_version: 1
+last_verified: "2026-08-23"
+
+repositories:
+  mlai-au:
+    url: https://github.com/MLAI-AUS-Inc/mlai-au
+    purpose: Public website and browser applications
+    runtime: cloudflare-workers
+    languages: [typescript]
+    package_manager: bun
+    owns:
+      - mlai.au browser experience
+    depends_on: [mlai-backend]
+    instructions: AGENTS.md
+
+  mlai-backend:
+    url: https://github.com/MLAI-AUS-Inc/mlai-backend
+    purpose: Shared Django APIs, identity, persistent data, integrations, jobs, and workers
+    runtime: containers
+    languages: [python]
+    database: postgresql
+    owns:
+      - shared MLAI API
+      - MLAI users and organisations
+      - backend scheduled work
+    migration_policy: explicit_approval_for_exact_migration
+    instructions: AGENTS.md
+
+  roo:
+    url: https://github.com/MLAI-AUS-Inc/roo
+    purpose: Slack-facing public and administrative AI agent services
+    runtime: containers
+    languages: [python]
+    application_root: roo-standalone
+    depends_on: [mlai-backend]
+    instructions: AGENTS.md
+
+  mlai-chat:
+    url: https://github.com/MLAI-AUS-Inc/mlai-chat
+    upstream: https://github.com/block/buzz
+    purpose: Community workspace, relay, clients, CLI, workflows, and agents
+    runtime: containers-and-native-clients
+    languages: [rust, typescript, dart]
+    depends_on: [mlai-backend]
+    migration_policy: explicit_approval_for_exact_migration
+    instructions: AGENTS.md
+
+  mlai-plane:
+    url: https://github.com/MLAI-AUS-Inc/mlai-plane
+    upstream: https://github.com/makeplane/plane
+    purpose: MLAI Plane application fork
+    default_branch: preview
+    runtime: containers
+    languages: [python, typescript]
+    depends_on: [mlai-plane-edge]
+    migration_policy: explicit_approval_for_exact_migration
+    instructions: AGENTS.md
+
+  mlai-plane-edge:
+    url: https://github.com/MLAI-AUS-Inc/mlai-plane-edge
+    purpose: Security boundary and routing gateway for admin.mlai.au
+    runtime: cloudflare-workers
+    languages: [typescript]
+    package_manager: bun
+    depends_on: [mlai-plane]
+    instructions: AGENTS.md
