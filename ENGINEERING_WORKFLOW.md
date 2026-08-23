@@ -56,6 +56,12 @@ Experimental MLAI forks may contain upstream links and conventions. Confirm
 that the experiment is intentionally in scope and whether any pull request
 belongs in `MLAI-AUS-Inc`, an upstream repository, or both.
 
+## Review expectations
+
+Automated review is an additional signal, not a substitute for the responsible
+maintainer. Authors should evaluate each automated comment against the stated
+scope, repository instructions, and current implementation before applying it.
+
 ## Cross-repository documentation changes
 
 Use one branch name across repositories when practical. Do not combine Git
