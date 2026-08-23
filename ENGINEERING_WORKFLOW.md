@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-23
+last_verified: 2026-08-24
 review_interval_days: 90
 ---
 
@@ -16,8 +16,9 @@ review_interval_days: 90
 4. Check for unrelated working-tree changes and preserve them.
 5. Create a narrowly named branch from the agreed local base.
 
-`mlai-plane` currently uses `preview` as its MLAI default branch. Upstream Plane
-instructions referring to another default branch do not override that fact.
+The inactive `mlai-plane` experiment uses `preview` as its repository default
+branch. Do not work in an inactive experiment unless the task explicitly calls
+for investigation or reactivation.
 
 ## Scope
 
@@ -51,8 +52,9 @@ Each pull request should state:
 - rollout ordering if contracts span repositories; and
 - any documentation that becomes authoritative or historical.
 
-MLAI forks may contain upstream links and conventions. Confirm whether the
-pull request belongs in `MLAI-AUS-Inc`, an upstream repository, or both.
+Experimental MLAI forks may contain upstream links and conventions. Confirm
+that the experiment is intentionally in scope and whether any pull request
+belongs in `MLAI-AUS-Inc`, an upstream repository, or both.
 
 ## Cross-repository documentation changes
 

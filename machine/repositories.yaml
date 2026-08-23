@@ -1,8 +1,9 @@
 schema_version: 1
-last_verified: "2026-08-23"
+last_verified: "2026-08-24"
 
 repositories:
   mlai-au:
+    lifecycle: active
     url: https://github.com/MLAI-AUS-Inc/mlai-au
     purpose: Public website and browser applications
     runtime: cloudflare-workers
@@ -14,6 +15,7 @@ repositories:
     instructions: AGENTS.md
 
   mlai-backend:
+    lifecycle: active
     url: https://github.com/MLAI-AUS-Inc/mlai-backend
     purpose: Shared Django APIs, identity, persistent data, integrations, jobs, and workers
     runtime: containers
@@ -27,6 +29,7 @@ repositories:
     instructions: AGENTS.md
 
   roo:
+    lifecycle: active
     url: https://github.com/MLAI-AUS-Inc/roo
     purpose: Slack-facing public and administrative AI agent services
     runtime: containers
@@ -36,9 +39,10 @@ repositories:
     instructions: AGENTS.md
 
   mlai-chat:
+    lifecycle: experimental_inactive
     url: https://github.com/MLAI-AUS-Inc/mlai-chat
     upstream: https://github.com/block/buzz
-    purpose: Community workspace, relay, clients, CLI, workflows, and agents
+    purpose: Experiment deploying and adapting the open-source Buzz collaboration platform
     runtime: containers-and-native-clients
     languages: [rust, typescript, dart]
     depends_on: [mlai-backend]
@@ -46,9 +50,10 @@ repositories:
     instructions: AGENTS.md
 
   mlai-plane:
+    lifecycle: experimental_inactive
     url: https://github.com/MLAI-AUS-Inc/mlai-plane
     upstream: https://github.com/makeplane/plane
-    purpose: MLAI Plane application fork
+    purpose: Experiment deploying and adapting the open-source Plane application
     default_branch: preview
     runtime: containers
     languages: [python, typescript]
@@ -57,8 +62,9 @@ repositories:
     instructions: AGENTS.md
 
   mlai-plane-edge:
+    lifecycle: experimental_inactive
     url: https://github.com/MLAI-AUS-Inc/mlai-plane-edge
-    purpose: Security boundary and routing gateway for admin.mlai.au
+    purpose: Edge-routing prototype for the inactive Plane deployment experiment
     runtime: cloudflare-workers
     languages: [typescript]
     package_manager: bun
