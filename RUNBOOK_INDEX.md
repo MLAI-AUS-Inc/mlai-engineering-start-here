@@ -10,6 +10,9 @@ review_interval_days: 90
 Operational details belong in the repository that owns the service. This page
 routes maintainers to those documents without copying procedures.
 
+If a service is not listed here, use [`SYSTEM_MAP.md`](SYSTEM_MAP.md) to
+identify the owning repository first.
+
 ## MLAI website
 
 - Repository: [`mlai-au`](https://github.com/MLAI-AUS-Inc/mlai-au)
