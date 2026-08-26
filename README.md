@@ -87,6 +87,7 @@ owns only cross-repository architecture and onboarding.
 - [`ACCESS_AND_ENVIRONMENTS.md`](ACCESS_AND_ENVIRONMENTS.md): access and credential model
 - [`RUNBOOK_INDEX.md`](RUNBOOK_INDEX.md): links to service-owned operations guides
 - [`AGENTS.md`](AGENTS.md): instructions for AI coding agents
+- [`machine/repositories.yaml`](machine/repositories.yaml): machine-readable repository inventory
 
 ## Keeping this current
 
