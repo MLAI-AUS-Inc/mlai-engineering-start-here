@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -14,6 +14,8 @@ People and browsers
   |
   +-- mlai.au ----------------> mlai-au ---------> mlai-backend
   |
+  +-- Member clients --------> mlai-chat relay and mlai-backend APIs
+  |
   +-- Slack ------------------> roo -------------> mlai-backend and approved integrations
 ```
 
@@ -24,7 +26,9 @@ service authenticates callers according to its own contract.
 
 | Capability | Owner | Important collaborators |
 | --- | --- | --- |
-| Public website and articles | `mlai-au` | `mlai-backend` for dynamic data |
+| Public website and article rendering | `mlai-au` | `mlai-backend` for dynamic data |
+| Article drafting and publishing | `mlai-chat` | GitHub connection publishes content to `mlai-au` |
+| Project and event channels | `mlai-backend` synchronizes managed channels | `mlai-chat` groups and displays channels |
 | Browser authentication flows | `mlai-au` UI, `mlai-backend` contract/data | — |
 | Founder Tools | `mlai-au` UI, `mlai-backend` API/data | External connectors |
 | Hackathon browser apps | `mlai-au` | `mlai-backend` APIs, Roo for selected agent experiences |
@@ -50,21 +54,28 @@ Owns Slack-facing AI routing and approved actions. Public and administrative
 surfaces are separate security principals. Roo does not become the source of
 truth for data owned by `mlai-backend` or Linear.
 
-## Inactive open-source deployment experiments
+### `mlai-chat`
 
-These repositories are retained for experiment history and possible future
-evaluation. They are not supported product surfaces or current architecture:
+Owns the member workspace, clients and conversation relay. The backend owns
+shared MLAI identity and domain records used by the clients.
 
-- `mlai-chat`: experiment deploying and adapting the open-source Buzz
-  collaboration platform;
-- `mlai-plane`: experiment deploying and adapting the open-source Plane
-  project-management platform; and
-- `mlai-plane-edge`: Cloudflare edge-routing prototype created for the Plane
-  experiment.
+## Choosing a checkout
 
-Documentation inside these repositories describes their intended experimental
-design. It must not be used as evidence that `chat.mlai.au`, `admin.mlai.au`, or
-their associated services are active.
+- Website changes belong in `mlai-au`.
+- For backend and Roo staging deployment changes, use the
+  [workflow in platform](https://github.com/MLAI-AUS-Inc/platform/blob/main/.github/workflows/deploy.yml).
+- For backend, Roo and Chat feature work, the standalone repositories continue
+  to merge PRs. The [platform guide](https://github.com/MLAI-AUS-Inc/platform/blob/main/AGENTS.md)
+  also supports coordinated changes in its `mlai-backend/`, `roo/` and
+  `mlai-chat/` directories. Follow the destination named in the issue or
+  existing PR. If it is unspecified, confirm the target with the maintainer
+  before branching.
+
+## Plane staging
+
+`mlai-plane` owns the application fork. `mlai-plane-edge` owns the Cloudflare
+gateway and documents the canonical staging domain. See the
+[operations index](RUNBOOK_INDEX.md#plane-staging) for staging and cutover guidance.
 
 ## When more than one active repository changes
 

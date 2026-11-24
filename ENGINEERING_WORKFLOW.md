@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -16,9 +16,9 @@ review_interval_days: 90
 4. Check for unrelated working-tree changes and preserve them.
 5. Create a narrowly named branch from the agreed local base.
 
-The inactive `mlai-plane` experiment uses `preview` as its repository default
-branch. Do not work in an inactive experiment unless the task explicitly calls
-for investigation or reactivation.
+For backend, Roo or Chat work, identify the checkout as well as the base
+branch using the [system map](SYSTEM_MAP.md#choosing-a-checkout). Plane's
+default branch is `main`.
 
 ## Scope
 
@@ -58,7 +58,6 @@ belongs in `MLAI-AUS-Inc`, an upstream repository, or both.
 
 ## Cross-repository documentation changes
 
-Use one branch name across repositories when practical. Do not combine Git
-histories or create one commit spanning repositories. Each repository should
-remain reviewable and mergeable independently; the central documentation
-change should link the related pull requests when they exist.
+Within `platform`, one PR can cover multiple project directories. Across
+separate repositories, use the same branch name when practical and open a PR
+in each repository. Link the related PRs from the central documentation PR.

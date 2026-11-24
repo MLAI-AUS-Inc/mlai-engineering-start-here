@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -57,8 +57,12 @@ a documentation edit.
 | `mlai.au` browser UI | `mlai-au` |
 | Shared API, identity, or persistent MLAI product data | `mlai-backend` |
 | Slack-facing agent behavior | `roo` |
-| Buzz deployment experiment | `mlai-chat` (inactive; explicit task required) |
-| Plane deployment experiment | `mlai-plane` and `mlai-plane-edge` (inactive; explicit task required) |
+| Member clients, relay and article publishing | `mlai-chat` |
+| Backend and Roo staging deployment | `platform` |
+| Plane application and staging gateway | `mlai-plane` and `mlai-plane-edge` |
+
+For projects present in both a standalone repository and `platform`, use the
+[checkout guidance](SYSTEM_MAP.md#choosing-a-checkout).
 
 If ownership is unclear, document the ambiguity rather than introducing a new
 cross-service dependency by assumption.
