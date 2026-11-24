@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -21,7 +21,7 @@ routes maintainers to those documents without copying procedures.
 
 - Repository: [`mlai-backend`](https://github.com/MLAI-AUS-Inc/mlai-backend)
 - Documentation index: `docs/README.md`
-- Historical Buzz/MLAI Chat experiment integration: `docs/mlai-chat-*.md`
+- [Member onboarding](https://github.com/MLAI-AUS-Inc/mlai-backend/blob/main/docs/community-chat-onboarding.md)
 - Organisational memory: `docs/org-memory-*.md`
 - Reconciliation: `docs/*reconciliation*.md`
 
@@ -32,13 +32,13 @@ routes maintainers to those documents without copying procedures.
 - Service operations and incident notes: `roo-standalone/docs/`
 - Runtime profiles: `roo-standalone/docker-compose*.yml`
 
-## Inactive experiment references
+## Platform staging
 
-The following documents are retained for investigation and historical context.
-They are not current production runbooks and do not establish supported
-services or operational readiness.
+The [root workflow](https://github.com/MLAI-AUS-Inc/platform/blob/main/.github/workflows/deploy.yml)
+defines backend and Roo staging jobs. The [deployment directory](https://github.com/MLAI-AUS-Inc/platform/tree/main/deploy)
+contains their configuration.
 
-### Buzz / MLAI Chat experiment
+## MLAI Chat
 
 - Repository: [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat)
 - Architecture: `ARCHITECTURE.md`
@@ -46,17 +46,17 @@ services or operational readiness.
 - Hosted deployment: `deploy/mlai/README.md`
 - Testing: `TESTING.md`
 
-### Plane experiment
+## Plane staging
 
 - Repository: [`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane)
 - MLAI fork boundary: `MLAI.md`
 - Upstream development instructions: `CONTRIBUTING.md`
 
-### Plane edge experiment
+### Edge gateway
 
 - Repository: [`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge)
 - Security and local development: `README.md`
-- Staging, cutover, rollback, and incidents: `RUNBOOK.md`
+- Staging, cutover, rollback, and incidents: [gateway runbook](https://github.com/MLAI-AUS-Inc/mlai-plane-edge/blob/main/RUNBOOK.md)
 - Dated rehearsal evidence: `ACCEPTANCE.md`
 
 ## Migration safety

@@ -1,7 +1,15 @@
 schema_version: 1
-last_verified: "2026-08-24"
+last_verified: "2026-11-24"
 
 repositories:
+  platform:
+    lifecycle: active
+    url: https://github.com/MLAI-AUS-Inc/platform
+    purpose: Monorepo for backend, Roo and Chat with backend and Roo staging deployment
+    project_directories: [mlai-backend, roo, mlai-chat]
+    staging_workflow: .github/workflows/deploy.yml
+    instructions: AGENTS.md
+
   mlai-au:
     lifecycle: active
     url: https://github.com/MLAI-AUS-Inc/mlai-au
@@ -39,10 +47,10 @@ repositories:
     instructions: AGENTS.md
 
   mlai-chat:
-    lifecycle: experimental_inactive
+    lifecycle: active
     url: https://github.com/MLAI-AUS-Inc/mlai-chat
     upstream: https://github.com/block/buzz
-    purpose: Experiment deploying and adapting the open-source Buzz collaboration platform
+    purpose: Member clients, conversation relay and website article publishing
     runtime: containers-and-native-clients
     languages: [rust, typescript, dart]
     depends_on: [mlai-backend]
@@ -50,11 +58,11 @@ repositories:
     instructions: AGENTS.md
 
   mlai-plane:
-    lifecycle: experimental_inactive
+    lifecycle: staging_documented
     url: https://github.com/MLAI-AUS-Inc/mlai-plane
     upstream: https://github.com/makeplane/plane
     purpose: Experiment deploying and adapting the open-source Plane application
-    default_branch: preview
+    default_branch: main
     runtime: containers
     languages: [python, typescript]
     depends_on: [mlai-plane-edge]
@@ -62,9 +70,9 @@ repositories:
     instructions: AGENTS.md
 
   mlai-plane-edge:
-    lifecycle: experimental_inactive
+    lifecycle: staging_documented
     url: https://github.com/MLAI-AUS-Inc/mlai-plane-edge
-    purpose: Edge-routing prototype for the inactive Plane deployment experiment
+    purpose: Cloudflare gateway for the Plane deployment with a documented staging route
     runtime: cloudflare-workers
     languages: [typescript]
     package_manager: bun

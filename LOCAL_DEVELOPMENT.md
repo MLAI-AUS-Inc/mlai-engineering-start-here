@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -9,19 +9,11 @@ review_interval_days: 90
 
 ## Workspace layout
 
-Keep active repositories as siblings so cross-repository scripts can resolve
-their expected paths:
-
-```text
-MLAI/
-├── mlai-engineering/
-├── mlai-au/
-├── mlai-backend/
-└── roo/
-```
-
-Clone only the repositories needed for the task. Some backend content workflows
-also expect a separately authorized sibling `content-factory` repository.
+Choose the checkout for your task using the [system map](SYSTEM_MAP.md#choosing-a-checkout).
+In `platform`, run project commands inside `mlai-backend/`, `roo/` or
+`mlai-chat/` and read that directory's instructions. For standalone work,
+keep related repositories as siblings when their scripts require it. Some
+backend content workflows expect a separately authorized `content-factory` checkout.
 
 ## Safe first checks
 
@@ -30,6 +22,9 @@ also expect a separately authorized sibling `content-factory` repository.
 | `mlai-au` | repository root | `bun install --frozen-lockfile` | `bun run typecheck` |
 | `mlai-backend` | repository root | Python 3.11 venv; install both requirements files | `python manage.py check` with a local SQLite URL |
 | `roo` | `roo-standalone` | Python 3.11 venv; install `requirements.txt` | targeted import/static inspection; see repo README |
+
+For Chat, select the client or relay in the project README and consult
+`TESTING.md` for its checks.
 
 Always prefer the current repository README and package scripts over this
 summary.
@@ -46,17 +41,8 @@ command:
 4. Present the exact migration set and target database to the user.
 5. Run it only after receiving explicit approval.
 
-The active known example that crosses this gate is `mlai-backend`'s full local
-web container. The inactive Buzz and Plane experiments also contain setup paths
-that apply migrations; do not run them unless an explicit task reactivates the
-experiment and approves the exact migration set.
-
-## Inactive experiments
-
-`mlai-chat`, `mlai-plane`, and `mlai-plane-edge` are not part of the standard
-workspace or onboarding path. Clone or run them only for an explicitly scoped
-historical investigation or reactivation decision. Repository-local commands
-describe the experiment, not a supported MLAI development environment.
+The backend's full local web container is one startup path that applies
+migrations. Inspect Chat and Plane startup paths for the same side effect.
 
 ## Secrets
 

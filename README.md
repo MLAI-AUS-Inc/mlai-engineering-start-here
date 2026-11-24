@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -35,22 +35,18 @@ service-specific runbooks.
 | [`mlai-au`](https://github.com/MLAI-AUS-Inc/mlai-au) | Public website and browser applications | React Router on Cloudflare Workers |
 | [`mlai-backend`](https://github.com/MLAI-AUS-Inc/mlai-backend) | Django APIs, identity, persistent data, integrations, jobs, and workers | Python/Django containers |
 | [`roo`](https://github.com/MLAI-AUS-Inc/roo) | Slack-facing public and administrative AI agent services | Python/FastAPI containers |
+| [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat) | Member clients, conversations and article publishing | Rust services and web/native clients |
+| [`platform`](https://github.com/MLAI-AUS-Inc/platform) | Backend, Roo and Chat project trees, plus shared staging deployment for backend and Roo | Monorepo and GitHub Actions |
 
-## Inactive open-source deployment experiments
+For a feature PR involving a project present in both checkouts, follow the
+[checkout guidance](SYSTEM_MAP.md#choosing-a-checkout).
 
-These repositories are retained as experiment history. They are not active,
-supported MLAI platform components and should not be cloned during normal
-onboarding or represented as current production architecture.
+## Plane staging
 
-| Repository | Experiment |
-| --- | --- |
-| [`mlai-chat`](https://github.com/MLAI-AUS-Inc/mlai-chat) | Deploying and adapting the open-source Buzz collaboration platform |
-| [`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane) | Deploying and adapting the open-source Plane project-management platform |
-| [`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge) | Edge-routing prototype created for the Plane deployment experiment |
-
-Work in an experimental repository only when a task explicitly reactivates or
-investigates that experiment. Its README may describe intended deployment
-behavior that was never adopted as current MLAI architecture.
+[`mlai-plane`](https://github.com/MLAI-AUS-Inc/mlai-plane) owns the Plane fork.
+[`mlai-plane-edge`](https://github.com/MLAI-AUS-Inc/mlai-plane-edge) owns the
+gateway and its staging runbook. Consult these repositories for Plane-specific
+work. Production cutover status is unconfirmed.
 
 See [`machine/repositories.yaml`](machine/repositories.yaml) for a compact,
 machine-readable version of this inventory.

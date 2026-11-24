@@ -1,7 +1,7 @@
 ---
 status: current
 owner: MLAI engineering
-last_verified: 2026-08-24
+last_verified: 2026-11-24
 review_interval_days: 90
 ---
 
@@ -10,8 +10,8 @@ review_interval_days: 90
 ## Context
 
 The supported MLAI platform currently consists of the public website and
-browser applications, the shared Django backend, and Roo's Slack-facing agent
-services. Each is independently deployable and has a distinct trust boundary.
+browser applications, the Chat member workspace, the shared Django backend,
+and Roo's Slack-facing agent services.
 
 ```mermaid
 flowchart LR
@@ -23,6 +23,8 @@ flowchart LR
     Data[(PostgreSQL / Redis / object storage)]
     Providers[Approved external providers]
 
+    Member[Member clients] --> Chat[Chat relay]
+    Member --> API
     Browser --> AU
     Slack --> Roo
     AU --> API
@@ -44,6 +46,12 @@ The browser reaches the React Router application in `mlai-au`. Static and
 server-rendered routes are handled by the Cloudflare Worker. Data-backed
 features call explicit `mlai-backend` APIs. The browser must send credentials
 only to approved origins.
+
+### Member workspace and articles
+
+Chat clients use the relay for conversations and backend APIs for shared member
+data. Chat drafts and publishes website articles through its GitHub connection.
+The public website renders the resulting content.
 
 ### Slack and agents
 
@@ -75,17 +83,12 @@ credentials and authority.
 When a feature needs data owned by another service, prefer an authenticated API
 or event contract over direct database access.
 
-## Inactive experiment architectures
+## Deployment ownership
 
-`mlai-chat`, `mlai-plane`, and `mlai-plane-edge` explored deployment of the
-open-source Buzz and Plane products. They are retained as inactive experiments,
-not shown in the supported architecture diagram, and must not be treated as
-current production request paths or data authorities.
-
-Their repository-local architecture and runbook files describe intended
-experimental behavior. Any reactivation requires an explicit architecture,
-security, operations, and ownership review before those documents can be
-promoted to current platform guidance.
+The `platform` monorepo includes backend, Roo and Chat source trees. Its root
+staging workflow deploys backend and Roo to a shared VM using separate Compose
+projects. Plane has a separate application and staging gateway. See the
+[runbook index](RUNBOOK_INDEX.md) for the owning repositories.
 
 ## Architecture changes
 
